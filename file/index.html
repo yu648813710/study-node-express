@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <style>
+        div {
+            width: 100%;
+            height: 100hv;
+            line-height: 100vh;
+            text-align: center;
+            font-size: 200px;
+            color: #454545;
+        }
+    </style>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        index
+    </div>
+    <label>用户：<input type="text" name="user" id="user"></label>
+    <label>密码：<input type="text" name="password" id="pass"></label>
+    <button id="reg">注册</button>
+    <button id="login">登录</button>
+    <div id="box"></div>
+    <script>
+        const ajax = function (data) {
+            $.ajax({
+                url: `/user`,
+                method: 'GET',
+                data,
+                complete: (data, state) => {
+                    const {ok, msg} = JSON.parse(data.responseText);
+                    alert(msg);
+                }
+
+            })
+        }
+
+        const box = $("#box");
+        $("#reg").click((e) => {
+            const user = $("#user").val();
+            const pass = $("#pass").val();
+            ajax({
+                act: "reg",
+                user,
+                pass
+            });
+        })
+        $("#login").click((e) => {
+            const user = $("#user").val();
+            const pass = $("#pass").val();
+            ajax({
+                act: "login",
+                user,
+                pass
+            });
+        })
+    </script>
+</body>
+
+</html>

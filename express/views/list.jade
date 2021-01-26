@@ -1,0 +1,36 @@
+doctype html
+html
+    head
+        style
+        //- |代表不做任何转义
+        script(src="a.js")
+            |window.onload = function () {
+            |   console.log(1)
+            |}
+        //- 点 . 也代表后面不做任何输出
+        script.
+            window.onload = function () {
+               console.log(1)
+               console.log(123)
+            }
+        script
+            
+        link(rel="stylesheet", href="www.baidu.com")
+    //- body abc
+    body
+        |abc
+        |123
+        //- 直接使用变量
+        div 我的名字：#{name}
+        div=name
+        //- class 和 style比较特殊
+        div(style=stylejson, class=classArr class="a")
+        //- 非转译输出html
+        div=htmlContent
+        div!=htmlContent
+        //- 直接执行JS
+        -var a = 12
+        -var b = 12
+        div=a+b
+        //- 直接插入 文件中的代码
+        include a.js

@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        style
+        script(src="a.js")
+        link(rel="stylesheet", href="www.baidu.com")
+    body    
+        div(style="width:200px", class="box")
+            ul(style={
+                width: '200px',
+                height: '200px',
+            }, class=['abc', 'ddd'])
+                li 我是嵌入里面
+                li
+                li
+        div.box
+        div#box
+        div&attributes({title: 'a', class:['a', 'b']})
