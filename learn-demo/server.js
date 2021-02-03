@@ -11,9 +11,11 @@ const multerObj = multer({
     dist: './static/upload', // 确认上传目录
 })
 
-// 引入路由
+// 引入web路由
+const webRouter = require('./route/web/router');
 
-const testRouter = require('./route/web/router');
+// 引入adminb路由
+const adminRouter = require('./route/admin/router');
 
 // 创建服务
 const server = express();
@@ -24,6 +26,7 @@ server.listen(8090);
 
 // 1. 获取前端请求数据
 // get自带
+server.use(bodyParser.urlencoded());
 server.use(multerObj.any());
 
 
@@ -79,7 +82,10 @@ server.use('/news/', createRouter());
 */
 
 // 使用module的规范来使用
-server.use('/news/', testRouter(express));
+// 前端页面路由
+server.use('/web/', webRouter(express));
+// 管理后台路由
+server.use('/admin/', adminRouter());
 
 // 5. 默认情况
 server.use(static('./static/'));
